@@ -1,5 +1,7 @@
 package com.pablo.project.spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +24,7 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private final Set<Product> products = new HashSet<>();
 

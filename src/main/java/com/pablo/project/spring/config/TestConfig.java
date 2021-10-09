@@ -36,6 +36,10 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        Category category1 = new Category(null, "eletronicos");
+        Category category2 = new Category(null, "books");
+        Category category3 = new Category(null, "Computers");
+
         User user1 = new User(null, "Pablo", "pablojuniorgn2@gmail.com", "1323232", "132323");
         User user2 = new User(null, "Junior", "juniorgn2@gmail.com", "143232", "4240544");
 
@@ -49,14 +53,17 @@ public class TestConfig implements CommandLineRunner {
         Order order2 = new Order(null, Instant.parse("2019-06-20T03:23:07Z"), OrderStatus.WAITING_PAYMENT, user2);
         Order order3 =  new Order(null, Instant.parse("2019-07-20T15:21:07Z"), OrderStatus.WAITING_PAYMENT, user1);
 
-        Category category1 = new Category(null, "eletronicos");
-        Category category2 = new Category(null, "books");
-        Category category3 = new Category(null, "Computers");
-        Category category4 = new Category(null, "Teclado");
-
         userRepository.saveAll(Arrays.asList(user1, user2));
         orderRepository.saveAll(Arrays.asList(order1, order2, order3));
-        categoryRepository.saveAll(Arrays.asList(category1, category2, category3, category4));
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+
+        p1.getCategories().add(category2);
+        p2.getCategories().add(category1);
+        p3.getCategories().add(category3);
+        p4.getCategories().add(category3);
+        p5.getCategories().add(category2);
+
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
     }
 }

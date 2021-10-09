@@ -83,6 +83,10 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
