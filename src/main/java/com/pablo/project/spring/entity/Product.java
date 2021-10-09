@@ -1,6 +1,13 @@
 package com.pablo.project.spring.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -20,7 +27,9 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_products_category", joinColumns = @JoinColumn(name = "fk_product_id"),
+            inverseJoinColumns = @JoinColumn(name = "fk_category_id"))
     private final Set<Category> categories = new HashSet<>();
 
     public Product(){
